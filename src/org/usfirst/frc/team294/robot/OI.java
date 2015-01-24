@@ -70,9 +70,10 @@ public class OI {
 		left[2].whenPressed(new CenterIntake());
 		
 		//Test code
-		test[4].whileActive(new TestPanLeft());
+		test[4].whenPressed(new TestPanLeft());
+		//test[4].whileActive(new TestPanLeft());
 		test[4].whenReleased(new PanStop());
-		test[5].whileActive(new TestPanRight());
+		//test[5].whileActive(new TestPanRight());
 		test[5].whenReleased(new PanStop());
 		test[8].whenPressed(new IntakeStop()); //Intake motor on port 7
 		test[9].whenPressed(new IntakeToteIn());
