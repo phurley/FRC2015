@@ -25,7 +25,6 @@ public class TelescopeToHeight extends Command {
 		kIntake
 	}
 	
-	private int height;
 	private double tolerance = 10;
 	private Setpoint m_setpoint;
 	

@@ -27,7 +27,6 @@ public class Telescope extends Subsystem {
 	
 	//PotLimitedSpeedController teleMotor = new PotLimitedSpeedController(telescope, telescopePot, "pivMinLimit", "pivMaxLimit");
 	//SpeedController pivotMotor=pivotMotorUnlimited;
-	
 
 	
 	public Telescope() {
@@ -63,6 +62,14 @@ public class Telescope extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    }
+    
+    public void setSoftMax(){
+    	
+    }
+    
+    public void setSoftMin(){
+    	
     }
     
    // protected double returnPIDInput() {
