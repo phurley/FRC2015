@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import org.usfirst.frc.team294.robot.commands.*;
 import org.usfirst.frc.team294.robot.commands.SafeGrabOrReleaseTote.GrabOrRelease;
 
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -68,14 +69,29 @@ public class OI {
 		right[2].whenPressed(new CenterIntake());
 		left[2].whenPressed(new CenterIntake());
 		
+		//Test code
+		test[1].whenPressed(new AutoRotateDegrees(90));
+		test[4].whenPressed(new TestPanLeft());
+		//test[4].whileActive(new TestPanLeft());
+		test[4].whenReleased(new PanStop());
+		//test[5].whileActive(new TestPanRight());
+		test[5].whenReleased(new PanStop());
+		test[8].whenPressed(new IntakeStop()); //Intake motor on port 7
+		test[9].whenPressed(new IntakeToteIn());
+		test[10].whenPressed(new IntakeReverse());
+		test[11].whenPressed(new IntakeOut());
+		//End test code
+		
 		right[3].whenPressed(new ManualGrabOrReleaseTote(GrabOrRelease.GRAB));
 		right[4].whenPressed(new ManualGrabOrReleaseTote(GrabOrRelease.RELEASE));
 		right[1].whileHeld(new SafeGrabOrReleaseTote(GrabOrRelease.GRAB));
 		right[2].whileHeld(new SafeGrabOrReleaseTote(GrabOrRelease.RELEASE));
+		
+		
 
 		right[11].whenPressed(new SingleStickDrive());
 		right[12].whenPressed(new ArcadeDriveWithJoysticks());
-		right[13].whenPressed(new TankDriveWithJoysticks());
+		//right[13].whenPressed(new TankDriveWithJoysticks()); //CAN NOT BE 13
 
 		co[5].whenPressed(new TelescopeToHeight(TelescopeToHeight.Setpoint.k1Tote));
 		co[4].whenPressed(new TelescopeToHeight(TelescopeToHeight.Setpoint.k2Tote));

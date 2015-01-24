@@ -2,7 +2,7 @@ package org.usfirst.frc.team294.robot.commands;
 
 import org.usfirst.frc.team294.robot.Robot;
 //import org.usfirst.frc.team294.robot.subsystems.Pivot;
-import org.usfirst.frc.team294.robot.subsystems.Telescope;
+//import org.usfirst.frc.team294.robot.subsystems.Telescope;
 //import org.usfirst.frc.team294.robot.subsystems.Telescope.Setpoint;
 
 import edu.wpi.first.wpilibj.Preferences;
