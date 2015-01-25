@@ -12,6 +12,7 @@ private double degrees;
 private double currentOrientation=0;
 private double desiredOrientation=0;
 private double degBuffer = 5; 
+private boolean first = true;
 
     public AutoRotateXDegreesRel(double degs) {//degs = degrees. positive number = turn Right. Negative number = turn Left
     	requires(Robot.drivetrain);
@@ -24,31 +25,31 @@ private double degBuffer = 5;
     // Called just before this Command runs the first time
     protected void initialize() {
     	//Robot.drivetrain.resetEncoders();
-    	//initial position plus degs rel 0-360
+    	//initial position plus degs rel 0-360 
     }
-    private boolean first=true;
+    
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	this.currentOrientation = Robot.drivetrain.getYaw();//current position 0-360
+    	this.currentOrientation = Robot.drivetrain.getYaw() + 180;//current position 0-360
     	if(first){
     		desiredOrientation=currentOrientation+degrees;
     		first=false;
     	}
     	System.out.println("target: " +desiredOrientation);
     	System.out.println("current: " +currentOrientation);
-    	if (degrees>0){
-    		Robot.drivetrain.tankDrive(0.5,-0.5);
-    	}else{
-    		Robot.drivetrain.tankDrive(-0.5, 0.5);
-    	}
+    	double error = desiredOrientation - currentOrientation;
+    	System.out.println("error: " + error);
+    	
+    	
+
+    	Robot.drivetrain.tankDrive(error * .035,-error * .035);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs((currentOrientation+180)-(desiredOrientation+180))< degBuffer){
+    	if (Math.abs((currentOrientation)-(desiredOrientation))< degBuffer){
     		Robot.drivetrain.tankDrive(0,0);
-    		first=true;
     		return true;}
         return false;
     }
