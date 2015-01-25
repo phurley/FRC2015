@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -68,15 +67,16 @@ public class Drivetrain extends Subsystem {
 			//imu = new IMU(serial_port,update_rate_hz);
 			imu = new IMUAdvanced(serial_port);
 		} catch( Exception ex ) {
-
+			throw ex;
 		}
 		if ( imu != null ) {
 			LiveWindow.addSensor("IMU", "Gyro", imu);
 		}
 	}
 
-	public float getHeading(){
-		return this.imu.getCompassHeading();
+	public float getYaw(){
+		//System.out.println(this.imu.getYaw());
+		return this.imu.getYaw();
 
 	}
 	

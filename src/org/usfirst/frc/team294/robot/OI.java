@@ -72,7 +72,7 @@ public class OI {
 		//Test code
 
 		test[2].whenPressed(new TankDriveWithJoysticks());
-		test[1].whenPressed(new AutoRotateXDegrees(30));
+		test[1].whenPressed(new AutoRotateXDegreesRel(45));
 		test[4].whenPressed(new TestPanLeft());
 		//test[4].whileActive(new TestPanLeft());
 		test[4].whenReleased(new PanStop());

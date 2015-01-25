@@ -24,7 +24,7 @@ public class TankDriveWithJoysticks extends Command {
     	//System.out.println("tank drive");
     	try {
     		Robot.drivetrain.tankDrive(Robot.oi.leftStick.getY(), Robot.oi.rightStick.getY());
-    		System.out.println(Robot.oi.leftStick.getY() + ", " + Robot.oi.rightStick.getY());
+    		//System.out.println(Robot.oi.leftStick.getY() + ", " + Robot.oi.rightStick.getY());
     	} catch (ArrayIndexOutOfBoundsException e) {
     		Robot.drivetrain.tankDrive(0, 0);
     	}

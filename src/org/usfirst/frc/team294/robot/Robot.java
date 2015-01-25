@@ -72,7 +72,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(intakeRollers);
 		SmartDashboard.putData(rangeFinder);
 		SmartDashboard.putData(telescope);
-		SmartDashboard.putNumber("Heading:", Robot.drivetrain.getHeading());
+		
 		//SmartDashboard.putData();
 
 		/*SmartDashboard.putData(new IntakeRun());
@@ -107,6 +107,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
     }
 
     public void teleopInit() {
@@ -130,6 +131,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Yaw:", Robot.drivetrain.getYaw());
+        SmartDashboard.putNumber("Heading:", Robot.drivetrain.getYaw()+180);
     }
     
     /**

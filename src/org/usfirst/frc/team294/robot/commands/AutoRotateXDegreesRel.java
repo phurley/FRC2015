@@ -1,0 +1,66 @@
+package org.usfirst.frc.team294.robot.commands;
+
+import org.usfirst.frc.team294.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
+
+/**
+ *
+ */
+public class AutoRotateXDegreesRel extends Command {
+private double degrees;
+private double currentOrientation=0;
+private double desiredOrientation=0;
+private double degBuffer = 5; 
+
+    public AutoRotateXDegreesRel(double degs) {//degs = degrees. positive number = turn Right. Negative number = turn Left
+    	requires(Robot.drivetrain);
+    	degrees = degs;
+    	
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    	//Robot.drivetrain.resetEncoders();
+    	//initial position plus degs rel 0-360
+    }
+    private boolean first=true;
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    	
+    	this.currentOrientation = Robot.drivetrain.getYaw();//current position 0-360
+    	if(first){
+    		desiredOrientation=currentOrientation+degrees;
+    		first=false;
+    	}
+    	System.out.println("target: " +desiredOrientation);
+    	System.out.println("current: " +currentOrientation);
+    	if (degrees>0){
+    		Robot.drivetrain.tankDrive(0.5,-0.5);
+    	}else{
+    		Robot.drivetrain.tankDrive(-0.5, 0.5);
+    	}
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+    	if (Math.abs((currentOrientation+180)-(desiredOrientation+180))< degBuffer){
+    		Robot.drivetrain.tankDrive(0,0);
+    		first=true;
+    		return true;}
+        return false;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+    	Robot.drivetrain.stop(); 
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    	Robot.drivetrain.stop();
+    }
+}
