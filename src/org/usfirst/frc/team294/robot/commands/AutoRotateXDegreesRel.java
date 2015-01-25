@@ -30,23 +30,21 @@ private double degBuffer = 5;
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	this.currentOrientation = Robot.drivetrain.getYaw();//current position 0-360
+    	this.currentOrientation = Robot.drivetrain.getYaw() + 180;//current position 0-360
     	if(first){
     		desiredOrientation=currentOrientation+degrees;
     		first=false;
     	}
     	System.out.println("target: " +desiredOrientation);
     	System.out.println("current: " +currentOrientation);
-    	if (degrees>0){
-    		Robot.drivetrain.tankDrive(0.5,-0.5);
-    	}else{
-    		Robot.drivetrain.tankDrive(-0.5, 0.5);
-    	}
+    	double error = desiredOrientation - currentOrientation;
+
+    	Robot.drivetrain.tankDrive(error * .1,-error * .1);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs((currentOrientation+180)-(desiredOrientation+180))< degBuffer){
+    	if (Math.abs((currentOrientation)-(desiredOrientation))< degBuffer){
     		Robot.drivetrain.tankDrive(0,0);
     		first=true;
     		return true;}
