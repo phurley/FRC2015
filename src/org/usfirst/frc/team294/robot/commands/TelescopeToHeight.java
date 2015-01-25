@@ -37,6 +37,7 @@ public class TelescopeToHeight extends Command {
     protected void initialize() {
     	setPrefSetpoint(getSetpointPrefName(m_setpoint));
 		System.out.println(m_setpoint);
+		System.out.println(Robot.telescope.getPotCanVal());
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -45,6 +46,7 @@ public class TelescopeToHeight extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	
         return onTarget();
     }
 

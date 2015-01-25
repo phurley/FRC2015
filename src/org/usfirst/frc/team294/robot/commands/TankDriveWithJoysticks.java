@@ -16,6 +16,7 @@ public class TankDriveWithJoysticks extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println("did something");
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -23,6 +24,7 @@ public class TankDriveWithJoysticks extends Command {
     	//System.out.println("tank drive");
     	try {
     		Robot.drivetrain.tankDrive(Robot.oi.leftStick.getY(), Robot.oi.rightStick.getY());
+    		System.out.println(Robot.oi.leftStick.getY() + ", " + Robot.oi.rightStick.getY());
     	} catch (ArrayIndexOutOfBoundsException e) {
     		Robot.drivetrain.tankDrive(0, 0);
     	}

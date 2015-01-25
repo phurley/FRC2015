@@ -37,6 +37,7 @@ public class Drivetrain extends Subsystem {
 	RateLimitFilter leftFilter = new RateLimitFilter(6.0);
 	RateLimitFilter rightFilter = new RateLimitFilter(6.0);
 
+
 	Timer lowBatteryTimer = new Timer();
 	Timer lowBatteryScaleTimer = new Timer();
 	double lowBatteryScale = 1.0;
@@ -76,8 +77,9 @@ public class Drivetrain extends Subsystem {
 
 	public float getHeading(){
 		return this.imu.getCompassHeading();
-	}
 
+	}
+	
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.

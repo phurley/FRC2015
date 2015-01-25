@@ -2,6 +2,7 @@ package org.usfirst.frc.team294.robot.commands;
 
 import org.usfirst.frc.team294.robot.Robot;
 
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -12,7 +13,9 @@ public class ManualTelescope extends Command {
     public ManualTelescope() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+
     	requires(Robot.telescope);
+
     }
 
     // Called just before this Command runs the first time
