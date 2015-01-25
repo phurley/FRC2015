@@ -36,7 +36,6 @@ public class Drivetrain extends Subsystem {
 	RateLimitFilter leftFilter = new RateLimitFilter(6.0);
 	RateLimitFilter rightFilter = new RateLimitFilter(6.0);
 
-	private float heading = 0;
 
 	Timer lowBatteryTimer = new Timer();
 	Timer lowBatteryScaleTimer = new Timer();
@@ -73,13 +72,13 @@ public class Drivetrain extends Subsystem {
 		if ( imu != null ) {
 			LiveWindow.addSensor("IMU", "Gyro", imu);
 		}
-		this.heading = this.imu.getCompassHeading();
 	}
 	
 	public float getHeading(){
-		return this.getHeading();
-	}
+		return this.imu.getCompassHeading();
 
+	}
+	
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
@@ -163,8 +162,4 @@ public class Drivetrain extends Subsystem {
 		return right;
 	}
 
-	public double getAngle() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

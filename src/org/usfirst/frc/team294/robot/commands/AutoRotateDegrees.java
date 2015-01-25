@@ -9,13 +9,14 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutoRotateDegrees extends Command {
 private double degrees;
-private double initialPosition = Robot.drivetrain.getAngle();
-private double finalPosition=0;
-private double threshold = 0.5; 
+private double currentPosition=0;
+private double desiredPosition=0;
+private double degBuffer = 90; 
 
     public AutoRotateDegrees(double degs) {//degs = degrees. positive number = turn Right. Negative number = turn Left
     	requires(Robot.drivetrain);
     	degrees = degs;
+    	desiredPosition+=degs;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -27,14 +28,16 @@ private double threshold = 0.5;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (degrees>0)Robot.drivetrain.tankDrive(1,-1);
-    	else Robot.drivetrain.tankDrive(-1, 1);
-    	this.finalPosition = Robot.drivetrain.getAngle();
+    	if (degrees>0)Robot.drivetrain.tankDrive(0.5,-0.5);
+    	else Robot.drivetrain.tankDrive(-0.5, 0.5);
+
+    	this.currentPosition = Robot.drivetrain.getHeading();
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(degrees -(finalPosition-initialPosition))< threshold){return true;}
+    	if (Math.abs(currentPosition-desiredPosition)< degBuffer){return true;}
         return false;
     }
 
