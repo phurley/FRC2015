@@ -23,12 +23,12 @@ public class Telescope extends Subsystem {
     // here. Call these from Commands.
 	int[] telescopeMotors = {RobotMap.kPWM_telescope1,RobotMap.kPWM_telescope2};
 	SpeedController telescope = new MultiCANTalon(telescopeMotors);
+	
+	
 	//AnalogInput telescopePot = new AnalogInput(RobotMap.kAIN_telescopePot);
 	
 	//PotLimitedSpeedController teleMotor = new PotLimitedSpeedController(telescope, telescopePot, "pivMinLimit", "pivMaxLimit");
 	//SpeedController pivotMotor=pivotMotorUnlimited;
-	
-	
 	
 	public Telescope() {
 		// Use these to get going:
@@ -49,9 +49,6 @@ public class Telescope extends Subsystem {
 		
 		
 		
-	
-		
-		
 		
 		//setInputRange(Preferences.getInstance().getDouble("pivMinLimit", 0.0),
 		//		Preferences.getInstance().getDouble("pivMaxLimit", 5.0));
@@ -66,24 +63,35 @@ public class Telescope extends Subsystem {
 	{
 		return ((MultiCANTalon) telescope).getCANTalon(0);
 	}
-	
-	private int forwardLimit=1023;
-	private int reverseLimit=0;
-	private int voltageThreshold=5;
-	
-	public int getForwardLimit(){
-		return this.forwardLimit;
+
+	/*
+	public void setForwardSoftLimitTel(MultiCANTalon tel, int limit){
+		for(int x : telescopeMotors){
+			(tel.getCANTalon(x)).setForwardSoftLimit(limit);
+			(tel.getCANTalon(x)).enableForwardSoftLimit(true);
+		}
+		
 	}
-	public int getReverseLimit(){
-		return this.reverseLimit;
+	public void setReverseSoftLimitTel(MultiCANTalon tel, int limit){
+		for(int x : telescopeMotors){
+			(tel.getCANTalon(x)).setReverseSoftLimit(limit);
+			(tel.getCANTalon(x)).enableReverseSoftLimit(true);
+		}
+		
+	}
+	*/
+	public double getPotCanVal(){
+		return (getMainTelescope()).getPosition();
 	}
 	
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     	
     	//if the voltage is over the threshold, sets the current position as the soft limit for the telescope
-    	if(getMainTelescope().getBusVoltage()>voltageThreshold){    		
+    	
+    	/*if(getMainTelescope().getBusVoltage()>voltageThreshold){    		
     		int topIsCloser=getMainTelescope().getAnalogInPosition()-forwardLimit;
     		int bottomIsCloser=getMainTelescope().getAnalogInPosition()-reverseLimit;
     		if(topIsCloser>bottomIsCloser){
@@ -95,7 +103,7 @@ public class Telescope extends Subsystem {
     			reverseLimit=getMainTelescope().getAnalogInPosition();
     			getMainTelescope().setReverseSoftLimit(reverseLimit);
     		}	
-    	}
+    	}*/
     }
     
    // protected double returnPIDInput() {
