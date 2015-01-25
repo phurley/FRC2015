@@ -72,6 +72,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putData(intakeRollers);
 		SmartDashboard.putData(rangeFinder);
 		SmartDashboard.putData(telescope);
+		SmartDashboard.putNumber("Heading:", Robot.drivetrain.getHeading());
 		//SmartDashboard.putData();
 
 		/*SmartDashboard.putData(new IntakeRun());

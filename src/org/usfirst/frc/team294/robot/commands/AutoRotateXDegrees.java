@@ -7,15 +7,16 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutoRotateDegrees extends Command {
+public class AutoRotateXDegrees extends Command {
 private double degrees;
 private double currentPosition=0;
 private double desiredPosition=0;
 private double degBuffer = 3; 
 
-    public AutoRotateDegrees(double degs) {//degs = degrees. positive number = turn Right. Negative number = turn Left
+    public AutoRotateXDegrees(double degs) {//degs = degrees. positive number = turn Right. Negative number = turn Left
     	requires(Robot.drivetrain);
     	degrees = degs;
+    	desiredPosition=Robot.drivetrain.getHeading();
     	desiredPosition+=degs;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);

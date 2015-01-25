@@ -70,7 +70,7 @@ public class OI {
 		left[2].whenPressed(new CenterIntake());
 		
 		//Test code
-		test[1].whenPressed(new AutoRotateDegrees(90));
+		test[1].whenPressed(new AutoRotateXDegrees(90));
 		test[4].whenPressed(new TestPanLeft());
 		//test[4].whileActive(new TestPanLeft());
 		test[4].whenReleased(new PanStop());

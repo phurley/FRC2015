@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -72,7 +73,7 @@ public class Drivetrain extends Subsystem {
 			LiveWindow.addSensor("IMU", "Gyro", imu);
 		}
 	}
-	
+
 	public float getHeading(){
 		return this.imu.getCompassHeading();
 	}
