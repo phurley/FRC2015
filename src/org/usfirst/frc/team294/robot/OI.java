@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team294.robot.commands.*;
 import org.usfirst.frc.team294.robot.commands.SafeGrabOrReleaseTote.GrabOrRelease;
-//import org.usfirst.frc.team294.robot.subsystems.Telescope.Setpoint;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -70,9 +70,12 @@ public class OI {
 		left[2].whenPressed(new CenterIntake());
 		
 		//Test code
+		test[2].whenPressed(new TankDriveWithJoysticks());
+		test[1].whenPressed(new AutoRotateDegrees(30));
 		test[4].whenPressed(new TestPanLeft());
 		//test[4].whileActive(new TestPanLeft());
 		test[4].whenReleased(new PanStop());
+		
 		//test[5].whileActive(new TestPanRight());
 		test[5].whenReleased(new PanStop());
 		test[8].whenPressed(new IntakeStop()); //Intake motor on port 7
@@ -85,9 +88,11 @@ public class OI {
 		right[4].whenPressed(new ManualGrabOrReleaseTote(GrabOrRelease.RELEASE));
 		right[1].whileHeld(new SafeGrabOrReleaseTote(GrabOrRelease.GRAB));
 		right[2].whileHeld(new SafeGrabOrReleaseTote(GrabOrRelease.RELEASE));
+		
+		
 
-		right[11].whenPressed(new SingleStickDrive());
-		right[12].whenPressed(new ArcadeDriveWithJoysticks());
+		//right[11].whenPressed(new SingleStickDrive());
+		//right[12].whenPressed(new ArcadeDriveWithJoysticks());
 		//right[13].whenPressed(new TankDriveWithJoysticks()); //CAN NOT BE 13
 
 		co[5].whenPressed(new TelescopeToHeight(TelescopeToHeight.Setpoint.k1Tote));
