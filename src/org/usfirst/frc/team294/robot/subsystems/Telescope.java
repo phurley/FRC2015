@@ -74,7 +74,7 @@ public class Telescope extends Subsystem {
 	}
 	*/
 	public double getPotCanVal(){
-		return (getMainTelescope()).getPosition();
+		return (getMainTelescope()).getAnalogInPosition();
 	}
 
 	private int forwardLimit=1023;

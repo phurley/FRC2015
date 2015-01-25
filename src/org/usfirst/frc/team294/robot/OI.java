@@ -82,7 +82,8 @@ public class OI {
 		test[8].whenPressed(new IntakeStop()); //Intake motor on port 7
 		test[9].whenPressed(new IntakeToteIn());
 		test[10].whenPressed(new IntakeReverse());
-		test[11].whenPressed(new IntakeOut());
+		//test[11].whenPressed(new IntakeOut());
+		test[11].whenPressed(new ManualTelescope());
 		//End test code
 		
 		right[3].whenPressed(new ManualGrabOrReleaseTote(GrabOrRelease.GRAB));
