@@ -24,7 +24,7 @@ public class ManualTelescope extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		try{
-		Robot.telescope.getMainTelescope().set(.25 * (Robot.oi.testStick.getY()));
+		Robot.telescope.getMainTelescope().set(.75 * (Robot.oi.testStick.getY()));
 		}
 		catch(ArrayIndexOutOfBoundsException e){
 		Robot.telescope.getMainTelescope().set(0);

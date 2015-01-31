@@ -41,6 +41,7 @@ public class Telescope extends Subsystem {
 		((MultiCANTalon) telescope).SetInverted(1, true);
 		//getMainTelescope().changeControlMode(ControlMode.Position);
 		getMainTelescope().setPID(1.0, 1.0, 1.0); //TODO
+		setForwardSoftLimitTel(telescope, -.6842);
 
 		
 		//setInputRange(Preferences.getInstance().getDouble("pivMinLimit", 0.0),
@@ -57,11 +58,11 @@ public class Telescope extends Subsystem {
 		return ((MultiCANTalon) telescope).getCANTalon(0);
 	}
 
-	/*
-	public void setForwardSoftLimitTel(MultiCANTalon tel, int limit){
+	
+	public void setForwardSoftLimitTel(SpeedController telescope2, double d){
 		for(int x : telescopeMotors){
-			(tel.getCANTalon(x)).setForwardSoftLimit(limit);
-			(tel.getCANTalon(x)).enableForwardSoftLimit(true);
+			(((MultiCANTalon) telescope2).getCANTalon(x)).g d);
+			(((MultiCANTalon) telescope2).getCANTalon(x)).enableForwardSoftLimit(true);
 		}
 		
 	}
@@ -72,8 +73,8 @@ public class Telescope extends Subsystem {
 		}
 		
 	}
-	*/
-	public double getPotCanVal(){
+	
+	public int getPotCanVal(){
 		return (getMainTelescope()).getAnalogInPosition();
 	}
 
