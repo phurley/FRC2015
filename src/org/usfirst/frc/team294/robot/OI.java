@@ -6,8 +6,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import org.usfirst.frc.team294.robot.commands.*;
 import org.usfirst.frc.team294.robot.commands.SafeGrabOrReleaseTote.GrabOrRelease;
-import org.usfirst.frc.team294.robot.subsystems.Pivot;
-import org.usfirst.frc.team294.robot.subsystems.Telescope.Setpoint;
+//import org.usfirst.frc.team294.robot.subsystems.Telescope.Setpoint;
 
 /**
  * This class is the glue that binds the controls on the physical operator
