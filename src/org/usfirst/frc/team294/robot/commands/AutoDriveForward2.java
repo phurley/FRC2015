@@ -7,42 +7,42 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TankDriveWithJoysticks extends Command {
-
-    public TankDriveWithJoysticks() {
+public class AutoDriveForward2 extends Command {
+	private double dis;
+    public AutoDriveForward2(double distance) {
         // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     	requires(Robot.drivetrain);
+    	dis=distance;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("did something");
+    	Robot.drivetrain.resetEncoders();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//System.out.println("tank drive");
-    	try {
-    		Robot.drivetrain.tankDrive(Robot.oi.leftStick.getY(), Robot.oi.rightStick.getY());
-    		//System.out.println(Robot.oi.leftStick.getY() + ", " + Robot.oi.rightStick.getY());
-    	} catch (ArrayIndexOutOfBoundsException e) {
-    		Robot.drivetrain.tankDrive(0, 0);
-    	}
+    	Robot.drivetrain.autoDrive(1);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	double left=Robot.drivetrain.getLeft();
+    	double right=Robot.drivetrain.getRight();
+        return (right>=dis)||(left>=dis);
     }
 
     // Called once after isFinished returns true
     protected void end() {
     	Robot.drivetrain.stop();
+    	
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+    	Robot.drivetrain.stop();
     }
 }

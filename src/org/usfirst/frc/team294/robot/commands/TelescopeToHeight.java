@@ -2,7 +2,7 @@ package org.usfirst.frc.team294.robot.commands;
 
 import org.usfirst.frc.team294.robot.Robot;
 //import org.usfirst.frc.team294.robot.subsystems.Pivot;
-import org.usfirst.frc.team294.robot.subsystems.Telescope;
+//import org.usfirst.frc.team294.robot.subsystems.Telescope;
 //import org.usfirst.frc.team294.robot.subsystems.Telescope.Setpoint;
 
 import edu.wpi.first.wpilibj.Preferences;
@@ -25,7 +25,6 @@ public class TelescopeToHeight extends Command {
 		kIntake
 	}
 	
-	private int height;
 	private double tolerance = 10;
 	private Setpoint m_setpoint;
 	
@@ -38,6 +37,7 @@ public class TelescopeToHeight extends Command {
     protected void initialize() {
     	setPrefSetpoint(getSetpointPrefName(m_setpoint));
 		System.out.println(m_setpoint);
+		System.out.println(Robot.telescope.getPotCanVal());
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -46,6 +46,7 @@ public class TelescopeToHeight extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	
         return onTarget();
     }
 

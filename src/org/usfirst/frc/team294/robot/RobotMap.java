@@ -8,8 +8,8 @@ package org.usfirst.frc.team294.robot;
 public class RobotMap {
     // For example to map the left and right motors, you could define the
     // following variables to use with your drivetrain subsystem.
-	public static int kPWM_leftMotor1 = 0;
- 	public static int kPWM_leftMotor2 = 1;
+	public static int kPWM_leftMotor1 = 1;
+ 	public static int kPWM_leftMotor2 = 2;
  	public static int kPWM_rightMotor1 = 3;
  	public static int kPWM_rightMotor2 = 4;
  	
@@ -25,6 +25,7 @@ public class RobotMap {
  	public static int kPWM_intakeWheelMotor = 7;
  	public static int kPWM_elevator = 8;
  	public static int kPWM_telescope1 = 5;
+ 	
  	public static int kPWM_telescope2 = 6;
 	public static int kPWM_intakeMotorLeft = 9;
 	public static int kPWM_intakeMotorRight = 10;
@@ -41,11 +42,6 @@ public class RobotMap {
  	public static int kDIN_kickerResetLimitSwitch = 8;
  	public static int kDIN_buttonIntake = 9;
  	
-
- 	// Analog Inputs
- 	public static int kAIN_telescopePot = 0;
- 	public static int kAIN_leftIntakePot = 1;
- 	public static int kAIN_rightIntakePot = 2;
 
  	// Solenoids
 

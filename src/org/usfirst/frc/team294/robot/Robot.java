@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -56,8 +57,39 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+    	pdp = new PowerDistributionPanel();
+    	
+    	toteGrab = new ToteGrab();
+    	canGrab = new CanGrab();
+    	drivetrain = new Drivetrain();
+    	telescope = new Telescope();
+    	intakeRollers = new IntakeRollers();
+    	rangeFinder = new RangeFinder();
+    	
+    	SmartDashboard.putData(drivetrain);
+		SmartDashboard.putData(toteGrab);
+		SmartDashboard.putData(canGrab);
+		SmartDashboard.putData(intakeRollers);
+		SmartDashboard.putData(rangeFinder);
+		SmartDashboard.putData(telescope);
+		
+		//SmartDashboard.putData();
+
+		/*SmartDashboard.putData(new IntakeRun());
+		SmartDashboard.putData(new IntakeReverse());
+		SmartDashboard.putData(new IntakeStop());
+		SmartDashboard.putData(new JawClose());
+		SmartDashboard.putData(new JawOpen());
+		SmartDashboard.putData(new ShiftDown());
+		SmartDashboard.putData(new ShiftUp());
+		SmartDashboard.putData(new Engage());
+		SmartDashboard.putData(new Shoot()); */
+    	
 		oi = new OI();
+		//toteGrab = new ToteGrab();
         // instantiate the command used for the autonomous period
+		
+		
       
     }
 	
@@ -75,6 +107,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
     }
 
     public void teleopInit() {
@@ -98,6 +131,8 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Yaw:", Robot.drivetrain.getYaw());
+        SmartDashboard.putNumber("Heading:", Robot.drivetrain.getYaw()+180);
     }
     
     /**

@@ -2,6 +2,7 @@ package org.usfirst.frc.team294.robot.commands;
 
 import org.usfirst.frc.team294.robot.Robot;
 
+import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,15 +33,15 @@ public class CenterIntake extends Command {
 			return;
 		Robot.toteGrab.leftMotor.set(setp);//setSetpoint(setp);
 		Robot.toteGrab.rightMotor.set(setpr);
-		if (!(ControlMode.Position == Robot.toteGrab.leftMotor.getControlMode())) {
-			if(!Robot.toteGrab.leftMotor.isControlEnabled())
-				Robot.toteGrab.leftMotor.enableControl();
-			Robot.toteGrab.leftMotor.changeControlMode(ControlMode.Position);
+		if (!(ControlMode.Position == ((CANTalon) Robot.toteGrab.leftMotor).getControlMode())) {
+			if(!((CANTalon) Robot.toteGrab.leftMotor).isControlEnabled())
+				((CANTalon) Robot.toteGrab.leftMotor).enableControl();
+			((CANTalon) Robot.toteGrab.leftMotor).changeControlMode(ControlMode.Position);
 		}
-		if (!(ControlMode.Position == Robot.toteGrab.rightMotor.getControlMode())) {
-			if(!Robot.toteGrab.rightMotor.isControlEnabled())
-				Robot.toteGrab.rightMotor.enableControl();
-			Robot.toteGrab.rightMotor.changeControlMode(ControlMode.Position);
+		if (!(ControlMode.Position == ((CANTalon) Robot.toteGrab.rightMotor).getControlMode())) {
+			if(!((CANTalon) Robot.toteGrab.rightMotor).isControlEnabled())
+				((CANTalon) Robot.toteGrab.rightMotor).enableControl();
+			((CANTalon) Robot.toteGrab.rightMotor).changeControlMode(ControlMode.Position);
 		}
     }
 

@@ -3,9 +3,11 @@ package org.usfirst.frc.team294.robot.subsystems;
 import org.usfirst.frc.team294.robot.RobotMap;
 
 
+
 //import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.CANTalon.ControlMode;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -16,8 +18,8 @@ public class ToteGrab extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
-	public CANTalon leftMotor = new CANTalon(RobotMap.kPWM_intakeMotorLeft);
-	public CANTalon rightMotor = new CANTalon(RobotMap.kPWM_intakeMotorRight);
+	public SpeedController leftMotor = new CANTalon(RobotMap.kPWM_intakeMotorLeft);
+	public SpeedController rightMotor = new CANTalon(RobotMap.kPWM_intakeMotorRight);
 	
 	//AnalogPotentiometer left = new AnalogPotentiometer(RobotMap.kAIN_leftIntakePot);
 	//AnalogPotentiometer right = new AnalogPotentiometer(RobotMap.kAIN_rightIntakePot);
@@ -50,47 +52,63 @@ public class ToteGrab extends Subsystem {
     	if(isBlocked(leftMotor))return;
     	leftMotor.set(1);
     }
-    public boolean isBlocked(CANTalon motor){
-    	if(motor.getBusVoltage()>voltageThreshold)return true;
+    public boolean isBlocked(SpeedController rightMotor2){
+    	if(((CANTalon) rightMotor2).getBusVoltage()>voltageThreshold)return true;
     	return false;
     }
-    public void setLeftMotorSpeed(float d){
-    	if(isBlocked(leftMotor))return;
-    	leftMotor.set(d);
+    public void setLeftMotorSpeed(double leftSpeed){
+    	if(isBlocked(leftMotor))
+    	{
+    		System.out.println("left motor blocked");
+    		return;
+    	}
+    	leftMotor.set(leftSpeed);
     }
-    public void setRightMotorSpeed(float rightSpeed){
-    	if(isBlocked(rightMotor))return;
+    public void setRightMotorSpeed(double rightSpeed){
+    	if(isBlocked(rightMotor))
+    	{
+    		System.out.println("right motor blocked");
+    		return;
+    	}
     	rightMotor.set(rightSpeed);
     }
+    public void setRightTest(double rightSpeed)
+    {
+    	rightMotor.set(rightSpeed);
+    }
+    public void setLeftTest(double leftSpeed)
+    {
+    	leftMotor.set(leftSpeed);
+    }
     public CANTalon getLeftMotor(){
-    	return this.leftMotor;
+    	return (CANTalon) this.leftMotor;
     }
     public CANTalon getRightMotor(){
-    	return this.rightMotor;
+    	return (CANTalon) this.rightMotor;
     }
     public int getVoltageThreshold(){
     	return this.voltageThreshold;
     }
     public int getRightPosition()
     {
-    	return leftMotor.getAnalogInPosition();
+    	return ((CANTalon) leftMotor).getAnalogInPosition();
     }
     public int getLeftPosition()
     {
-    	return rightMotor.getAnalogInPosition();
+    	return ((CANTalon) rightMotor).getAnalogInPosition();
     }
     
     public boolean isOpen(){
-    	if(Math.abs(leftMotor.getAnalogInPosition()-rightMotor.getAnalogInPosition())>=preferredOpenDistance)return true;
+    	if(Math.abs(((CANTalon) leftMotor).getAnalogInPosition()-((CANTalon) rightMotor).getAnalogInPosition())>=preferredOpenDistance)return true;
     	return false;
     }
     
     public void centerIntake()
     {
-    	leftMotor.changeControlMode(ControlMode.Position);
-		leftMotor.setPID(1.0, 1.0, 1.0); //TODO
-		rightMotor.changeControlMode(ControlMode.Position);
-		rightMotor.setPID(1.0, 1.0, 1.0); //TODO
+    	((CANTalon) leftMotor).changeControlMode(ControlMode.Position);
+		((CANTalon) leftMotor).setPID(1.0, 1.0, 1.0); //TODO
+		((CANTalon) rightMotor).changeControlMode(ControlMode.Position);
+		((CANTalon) rightMotor).setPID(1.0, 1.0, 1.0); //TODO
     }
 
 }

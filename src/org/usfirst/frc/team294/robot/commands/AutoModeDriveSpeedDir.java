@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 /**
  *
  */
-public class AutoModeDrive extends CommandGroup {
+public class AutoModeDriveSpeedDir extends CommandGroup {
     
-    public  AutoModeDrive() {
+    public  AutoModeDriveSpeedDir() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
