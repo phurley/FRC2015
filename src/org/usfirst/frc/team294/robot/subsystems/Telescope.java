@@ -61,7 +61,7 @@ public class Telescope extends Subsystem {
 	
 	public void setForwardSoftLimitTel(SpeedController telescope2, double d){
 		for(int x : telescopeMotors){
-			(((MultiCANTalon) telescope2).getCANTalon(x)).g d);
+			//(((MultiCANTalon) telescope2).getCANTalon(x)).g d);
 			(((MultiCANTalon) telescope2).getCANTalon(x)).enableForwardSoftLimit(true);
 		}
 		
